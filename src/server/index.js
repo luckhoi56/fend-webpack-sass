@@ -1,8 +1,12 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+var aylien = require("aylien_textapi");
 
 var json = {
     'title': 'test json response',
@@ -35,3 +39,10 @@ app.get('/test', function (req, res) {
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
+
+var textapi = new aylien({
+    application_id: process.env.API_ID,
+    application_key: process.env.API_KEY
+    });
+
+console.log(`Your API key is ${process.env.API_KEY}`);
